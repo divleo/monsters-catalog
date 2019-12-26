@@ -1,26 +1,73 @@
 import React from 'react';
-import logo from './logo.svg';
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      monsters: [],
+    };
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((response) => response.json())
+      .then((users) => {
+        const data = users.map((user) => {
+          const { id, name, email } = user;
+          return { id, name, email, active: false };
+        });
+
+        this.setState({ monsters: data });
+      });
+  }
+
+  handleClick(id) {
+    this.setState(({ monsters }) => {
+      return {
+        monsters: monsters.map((monster) => {
+          if (monster.id === id) {
+            return { ...monster, active: !monster.active };
+          }
+
+          return monster;
+        }),
+      };
+    });
+  }
+
+  render() {
+    return (
+      <div className='App'>
+        <ul>
+          {this.state.monsters.map((monster) => {
+            const styles = {
+              listStyleType: 'none',
+              textDecoration: monster.active ? 'line-through' : null,
+            };
+
+            return (
+              <li
+                key={monster.id}
+                style={styles}
+                onClick={() => this.handleClick(monster.id)}
+              >
+                <hr />
+                {`name: ${monster.name}`}
+                <br />
+                {`email: ${monster.email}`}
+                <hr />
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    );
+  }
 }
 
 export default App;

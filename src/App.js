@@ -1,5 +1,7 @@
 import React from 'react';
 
+import CardList from './components/card-list/card-list.component';
+
 import './App.css';
 
 class App extends React.Component {
@@ -42,29 +44,11 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className='App'>
-        <ul>
-          {this.state.monsters.map((monster) => {
-            const styles = {
-              listStyleType: 'none',
-              textDecoration: monster.active ? 'line-through' : null,
-            };
-
-            return (
-              <li
-                key={monster.id}
-                style={styles}
-                onClick={() => this.handleClick(monster.id)}
-              >
-                <hr />
-                {`name: ${monster.name}`}
-                <br />
-                {`email: ${monster.email}`}
-                <hr />
-              </li>
-            );
-          })}
-        </ul>
+      <div className="App">
+        <CardList
+          monsters={this.state.monsters}
+          handleClick={this.handleClick}
+        />
       </div>
     );
   }

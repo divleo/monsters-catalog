@@ -1,8 +1,8 @@
 import React from 'react';
 
-import CardList from '../card-list/card-list.component';
+import CardList from '../card-list';
 
-import './app.styles.css';
+import './app.css';
 
 class App extends React.Component {
   constructor() {
@@ -44,7 +44,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="app">
         <CardList
           monsters={this.state.monsters}
           handleClick={this.handleClick}

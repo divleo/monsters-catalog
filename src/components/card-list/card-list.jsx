@@ -1,8 +1,8 @@
 import React from 'react';
 
-import CardListItem from '../card-list-item/card-list-item.component';
+import CardListItem from '../card-list-item';
 
-import './card-list.styles.css';
+import './card-list.css';
 
 function CardList(props) {
   const { monsters, handleClick } = props;

@@ -1,29 +1,21 @@
 import React from 'react';
 
+import CardListItem from '../card-list-item/card-list-item.component';
+
 import './card-list.styles.css';
 
 function CardList(props) {
+  const { monsters, handleClick } = props;
+
   return (
     <div className="card-list">
-      {props.monsters.map((monster) => {
-        const styles = {
-          cursor: 'pointer',
-          userSelect: 'none',
-          textDecoration: monster.active ? 'line-through' : null,
-        };
-
+      {monsters.map((monster) => {
         return (
-          <h1
+          <CardListItem
             key={monster.id}
-            style={styles}
-            onClick={() => props.handleClick(monster.id)}
-          >
-            <hr />
-            {`name: ${monster.name}`}
-            <br />
-            {`email: ${monster.email}`}
-            <hr />
-          </h1>
+            monster={monster}
+            handleClick={handleClick}
+          />
         );
       })}
     </div>

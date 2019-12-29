@@ -8,7 +8,7 @@ function CardListItem(props) {
   return (
     <div className="card-list-item">
       <img
-        src={`https://robohash.org/${monster.id}?set=set2&size=180x180`}
+        src={`https://robohash.org/${monster.id}?set=set2&size=180x250`}
         alt="monster"
       />
       <h2>{monster.name}</h2>

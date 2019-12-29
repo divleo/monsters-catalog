@@ -51,6 +51,7 @@ class App extends React.Component {
 
     return (
       <div className="app">
+        <h1>Monsters Catalog</h1>
         <SearchBox
           placeholder={'search monsters'}
           onSearchChange={this.onSearchChange}

@@ -35,9 +35,11 @@ function App() {
   };
 
   return (
-    <div className="app">
-      <h1>Monsters Catalog</h1>
-      <SearchBox placeholder={'search monsters'} onSearchChange={setSearch} />
+    <div className="app-container">
+      <div className="app-header">
+        <h1>Monsters Catalog</h1>
+        <SearchBox placeholder={'search monsters'} onSearchChange={setSearch} />
+      </div>
       <CardList monsters={filterMonsters(search)} />
     </div>
   );

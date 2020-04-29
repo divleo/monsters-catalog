@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
+import './App.css';
+
+import Header from './components/header/header.component';
 import SearchBox from './components/search-box/search-box.component';
 import CardList from './components/card-list/card-list.component';
-
-import './App.css';
 
 function App() {
   const [monsters, setMonsters] = useState([]);
@@ -12,35 +13,32 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch('https://jsonplaceholder.typicode.com/users');
-      res
-        .json()
-        .then((res) =>
-          res.map(({ id, name, email }) => ({
-            id,
-            name,
-            email,
-          }))
-        )
-        .then((data) => setMonsters(data));
+      const data = await res.json();
+
+      const monsters = data.map(({ id, name, email }) => ({ id, name, email }));
+
+      setMonsters(monsters);
     };
     fetchData();
   }, []);
 
-  const filterMonsters = (searchField) => {
-    if (!searchField) return monsters;
+  const handleSearch = (event) => setSearch(event.target.value);
 
-    return monsters.filter((monster) =>
-      monster.name.toLowerCase().includes(searchField.toLowerCase())
-    );
-  };
+  const filteredMonsters = !search
+    ? monsters
+    : monsters.filter((monster) =>
+        monster.title.toUpperCase().includes(search.toUpperCase())
+      );
 
   return (
-    <div className="app-container">
-      <div className="app-header">
-        <h1>Monsters Catalog</h1>
-        <SearchBox placeholder={'search monsters'} onSearchChange={setSearch} />
-      </div>
-      <CardList monsters={filterMonsters(search)} />
+    <div className="container">
+      <Header title={'Monsters Catalog'}>
+        <SearchBox
+          placeholder={'search monsters'}
+          handleSearch={handleSearch}
+        />
+      </Header>
+      <CardList monsters={filteredMonsters} />
     </div>
   );
 }

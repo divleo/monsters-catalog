@@ -1,42 +1,37 @@
-.app-container {
+.root {
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(
+    to left,
+    rgba(7, 27, 82, 1) 0%,
+    rgba(0, 128, 128, 1) 100%
+  );
+}
+
+.container {
   width: 100%;
-  padding-right: 1rem;
-  padding-left: 1rem;
-  margin-right: auto;
-  margin-left: auto;
 }
 
 @media (min-width: 576px) {
-  .app-container {
+  .container {
     max-width: 540px;
   }
 }
 
 @media (min-width: 768px) {
-  .app-container {
+  .container {
     max-width: 720px;
   }
 }
 
 @media (min-width: 992px) {
-  .app-container {
+  .container {
     max-width: 960px;
   }
 }
 
 @media (min-width: 1200px) {
-  .app-container {
+  .container {
     max-width: 1140px;
   }
-}
-
-.app-header {
-  text-align: center;
-}
-
-.app-header h1 {
-  font-family: 'Bigelow Rules';
-  font-size: 85px;
-  color: #0ccac4;
-  margin: 30px 0 15px 0;
 }

@@ -2,12 +2,12 @@ import React from 'react';
 
 import './search-box.styles.css';
 
-const SearchBox = ({ placeholder, onSearchChange }) => (
+const SearchBox = ({ placeholder, handleSearch }) => (
   <input
     className="search-box"
     type="search"
     placeholder={placeholder}
-    onChange={(e) => onSearchChange(e.target.value)}
+    onChange={(event) => handleSearch(event)}
   />
 );
 
